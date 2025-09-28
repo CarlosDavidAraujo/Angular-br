@@ -1,0 +1,43 @@
+:host {
+  display: block;
+}
+
+.icon i {
+  transition: transform 0.1s ease-in-out;
+}
+
+.header[data-open] .icon i {
+  transform: rotate(180deg);
+}
+
+.header[data-focus-visible] {
+  outline: var(--focus-width, 2px) var(--focus-style, solid)
+    var(--focus-color, #007bff);
+  outline-offset: var(--focus-offset, 2px);
+}
+
+[ngpAccordionContent][data-open] {
+  animation: slideDown 0.2s ease-in-out forwards;
+}
+
+[ngpAccordionContent][data-closed] {
+  animation: slideUp 0.2s ease-in-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--ngp-accordion-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--ngp-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

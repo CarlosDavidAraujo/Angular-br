@@ -1,0 +1,37 @@
+<div
+  class="br-select"
+  ngpSelect
+  [(ngpSelectValue)]="value"
+  [ngpSelectDisabled]="disabled()"
+>
+  <div class="br-input">
+    <input
+      [id]="id()"
+      type="text"
+      [placeholder]="placeholder()"
+      [value]="displayValue()"
+      readonly
+    />
+    <button class="br-button" type="button" aria-label="Exibir lista" ngpButton>
+      <i class="fas fa-angle-down" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div *ngpSelectPortal ngpSelectDropdown>
+    <div class="br-list" tabindex="0" [attr.expanded]="open() ? true : null">
+      @for (option of filteredOptions(); track option.value) {
+      <div
+        class="br-item"
+        [ngpSelectOptionValue]="option.value"
+        ngpSelectOption
+      >
+        {{ option.label }}
+      </div>
+      } @empty {
+      <div class="br-item">
+        <span>Nenhuma opção encontrada</span>
+      </div>
+      }
+    </div>
+  </div>
+</div>

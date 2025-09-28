@@ -1,0 +1,30 @@
+/* Estilos para a lista (dropdown) */
+div[ngpSelectDropdown] .br-list {
+  display: block; /* Garante que seja visível, já que ng-primitives controla a presença no DOM */
+  position: static; /* O portal já cuida do posicionamento */
+  box-shadow: var(--select-shadow);
+  margin-top: 0;
+  border: 1px solid #dfe3e6;
+  border-radius: 4px;
+}
+
+/* Estilos para os itens dentro da lista */
+div[ngpSelectDropdown] .br-item {
+  --item-padding: 0.75rem 1rem;
+  padding: var(--item-padding);
+}
+
+div[ngpSelectDropdown] .br-item:not([data-disabled]):hover,
+div[ngpSelectDropdown] .br-item[data-hover] {
+  background-image: linear-gradient(
+    rgba(var(--color-rgb), var(--hover)),
+    rgba(var(--color-rgb), var(--hover))
+  );
+}
+
+/* div[ngpSelectDropdown] .br-item[data-active] {
+  background-color: #e6f7ff;
+  color: #096dd9;
+  font-weight: 600;
+}
+  */
