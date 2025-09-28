@@ -1,86 +1,111 @@
+import { BooleanInput } from '@angular/cdk/coercion';
 import {
+  booleanAttribute,
   Component,
   computed,
-  effect,
-  inject,
   input,
   model,
   signal,
-  ViewEncapsulation,
 } from '@angular/core';
-import { ControlValueAccessor, FormsModule } from '@angular/forms';
+import { ControlValueAccessor } from '@angular/forms';
 import {
-  NgpSelect,
-  NgpSelectDropdown,
-  NgpSelectOption,
-  NgpSelectPortal,
-} from 'ng-primitives/select';
-import { NgpButton } from 'ng-primitives/button';
+  NgpCombobox,
+  NgpComboboxButton,
+  NgpComboboxDropdown,
+  NgpComboboxInput,
+  NgpComboboxOption,
+  NgpComboboxPortal,
+} from 'ng-primitives/combobox';
 import { ChangeFn, provideValueAccessor, TouchedFn } from 'ng-primitives/utils';
-
-export interface BrSelectOption {
-  value: any;
-  label: string;
-}
 
 @Component({
   selector: 'br-select',
-  standalone: true,
   imports: [
-    FormsModule,
-    NgpSelect,
-    NgpSelectDropdown,
-    NgpSelectOption,
-    NgpSelectPortal,
-    NgpButton,
+    NgpCombobox,
+    NgpComboboxDropdown,
+    NgpComboboxOption,
+    NgpComboboxInput,
+    NgpComboboxPortal,
+    NgpComboboxButton,
   ],
   providers: [provideValueAccessor(BrSelectComponent)],
-  styleUrl: './br-select.component.css',
-  templateUrl: './br-select.component.html',
-  hostDirectives: [
-    {
-      directive: NgpSelect,
-      inputs: ['ngpSelectDisabled: disabled'],
-    },
-  ],
+  templateUrl: `br-select.component.html`,
+  styleUrl: `br-select.component.css`,
 })
 export class BrSelectComponent implements ControlValueAccessor {
-  readonly options = input.required<BrSelectOption[]>();
-  readonly placeholder = input<string>('Selecione o item');
-  readonly label = input.required<string>();
-  readonly id = input.required<string>();
-  readonly disabled = model(false);
+  /** The options for the combobox. */
+  readonly options = input<string[]>([]);
 
-  readonly value = model<any>();
-  protected readonly searchTerm = signal('');
+  /** The selected value. */
+  readonly value = model<string | undefined>();
 
-  private readonly select = inject(NgpSelect, { self: true });
-  readonly open = computed(() => this.select.open());
+  /** The placeholder for the input. */
+  readonly placeholder = input<string>('');
 
-  readonly filteredOptions = computed(() => {
-    const term = this.searchTerm().toLowerCase();
-    if (!term) return this.options();
-    return this.options().filter((option) =>
-      option.label.toLowerCase().includes(term)
-    );
+  /** The disabled state of the combobox. */
+  readonly disabled = input<boolean, BooleanInput>(false, {
+    transform: booleanAttribute,
   });
 
-  readonly displayValue = computed(() => {
-    const selectedOption = this.options().find(
-      (opt) => opt.value === this.value()
-    );
-    return selectedOption?.label || ''; // Retorna string vazia se nada selecionado
-  });
+  /** The filter value. */
+  protected readonly filter = signal<string>('');
 
-  private onChange?: ChangeFn<any>;
-  private onTouched?: TouchedFn;
+  /** Get the filtered options. */
+  protected readonly filteredOptions = computed(() =>
+    this.options().filter((option) =>
+      option.toLowerCase().includes(this.filter().toLowerCase())
+    )
+  );
 
-  constructor() {
-    effect(() => this.onChange?.(this.value()));
+  /** Store the form disabled state */
+  protected readonly formDisabled = signal(false);
+
+  /** The on change callback */
+  private onChange?: ChangeFn<string>;
+
+  /** The on touch callback */
+  protected onTouched?: TouchedFn;
+
+  onFilterChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.filter.set(input.value);
   }
 
-  writeValue = (value: any) => this.value.set(value);
-  registerOnChange = (fn: ChangeFn<any>) => (this.onChange = fn);
-  registerOnTouched = (fn: TouchedFn) => (this.onTouched = fn);
-  setDisabledState = (isDisabled: boolean) => this.disabled.set(isDisabled);
+  writeValue(value: string | undefined): void {
+    this.value.set(value);
+    this.filter.set(value ?? '');
+  }
+
+  registerOnChange(fn: ChangeFn<string | undefined>): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: TouchedFn): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.formDisabled.set(isDisabled);
+  }
+
+  protected onValueChange(value: string): void {
+    this.onChange?.(value);
+    // update the filter value
+    this.filter.set(value);
+  }
+
+  protected resetOnClose(open: boolean): void {
+    // if the dropdown is closed, reset the filter value
+    if (open) {
+      return;
+    }
+
+    // if the filter value is empty, set the value to undefined
+    if (this.filter() === '') {
+      this.value.set(undefined);
+    } else {
+      // otherwise set the filter value to the selected value
+      this.filter.set(this.value() ?? '');
+    }
+  }
 }

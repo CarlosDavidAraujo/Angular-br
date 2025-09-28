@@ -1,37 +1,37 @@
 <div
   class="br-select"
-  ngpSelect
-  [(ngpSelectValue)]="value"
-  [ngpSelectDisabled]="disabled()"
+  [(ngpComboboxValue)]="value"
+  [ngpComboboxDisabled]="disabled() || formDisabled()"
+  (ngpComboboxOpenChange)="resetOnClose($event)"
+  (ngpComboboxValueChange)="onValueChange($event)"
+  ngpCombobox
 >
   <div class="br-input">
     <input
-      [id]="id()"
-      type="text"
+      [value]="filter()"
       [placeholder]="placeholder()"
-      [value]="displayValue()"
-      readonly
+      (input)="onFilterChange($event)"
+      (blur)="onTouched?.()"
+      ngpComboboxInput
     />
-    <button class="br-button" type="button" aria-label="Exibir lista" ngpButton>
+    <button
+      class="br-button"
+      type="button"
+      aria-label="Exibir lista"
+      tabindex="-1"
+      ngpComboboxButton
+    >
       <i class="fas fa-angle-down" aria-hidden="true"></i>
     </button>
   </div>
 
-  <div *ngpSelectPortal ngpSelectDropdown>
-    <div class="br-list" tabindex="0" [attr.expanded]="open() ? true : null">
-      @for (option of filteredOptions(); track option.value) {
-      <div
-        class="br-item"
-        [ngpSelectOptionValue]="option.value"
-        ngpSelectOption
-      >
-        {{ option.label }}
-      </div>
-      } @empty {
-      <div class="br-item">
-        <span>Nenhuma opção encontrada</span>
-      </div>
-      }
+  <div *ngpComboboxPortal ngpComboboxDropdown class="br-list d-block">
+    @for (option of filteredOptions(); track option) {
+    <div [ngpComboboxOptionValue]="option" ngpComboboxOption class="br-item">
+      {{ option }}
     </div>
+    } @empty {
+    <div class="empty-message">No options found</div>
+    }
   </div>
 </div>

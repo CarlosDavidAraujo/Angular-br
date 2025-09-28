@@ -1,30 +1,102 @@
-/* Estilos para a lista (dropdown) */
-div[ngpSelectDropdown] .br-list {
-  display: block; /* Garante que seja visível, já que ng-primitives controla a presença no DOM */
-  position: static; /* O portal já cuida do posicionamento */
-  box-shadow: var(--select-shadow);
-  margin-top: 0;
-  border: 1px solid #dfe3e6;
-  border-radius: 4px;
+.br-select {
+  --select-divider: 1px solid var(--color-secondary-04);
+}
+.br-select .br-item.highlighted[selected] {
+  background-color: var(--selected);
 }
 
-/* Estilos para os itens dentro da lista */
-div[ngpSelectDropdown] .br-item {
+[ngpComboboxDropdown] .br-list {
+  display: block;
+  position: static;
+  margin-top: 0;
+  border-radius: 4px;
+  border: 1px solid #dfe3e6;
+  width: var(--ngp-combobox-width);
+}
+
+div[ngpComboboxDropdown] .br-item {
   --item-padding: 0.75rem 1rem;
   padding: var(--item-padding);
 }
 
-div[ngpSelectDropdown] .br-item:not([data-disabled]):hover,
-div[ngpSelectDropdown] .br-item[data-hover] {
+div[ngpComboboxDropdown] .br-item[data-hover] {
   background-image: linear-gradient(
-    rgba(var(--color-rgb), var(--hover)),
-    rgba(var(--color-rgb), var(--hover))
+    rgba(200, 200, 200, 0.2),
+    rgba(200, 200, 200, 0.2)
   );
 }
 
-/* div[ngpSelectDropdown] .br-item[data-active] {
+[ngpComboboxDropdown] .br-item[data-active] {
   background-color: #e6f7ff;
-  color: #096dd9;
   font-weight: 600;
 }
-  */
+
+[ngpCombobox][data-focus] {
+  outline: 2px solid var(--ngp-focus-ring);
+  outline-offset: 2px;
+}
+
+[ngpComboboxDropdown][data-enter] {
+  animation: combobox-show 0.1s ease-out;
+}
+
+[ngpComboboxDropdown][data-exit] {
+  animation: combobox-hide 0.1s ease-out;
+}
+
+[ngpComboboxOption][data-hover] {
+  background-color: var(--hover);
+}
+
+[ngpComboboxOption][data-press] {
+  background-color: var(--ngp-background-active);
+}
+
+[ngpComboboxOption][data-active] {
+  outline: var(--focus-width, 2px) var(--focus-style, solid)
+    var(--focus-color, #007bff);
+  outline-offset: var(--focus-offset, 2px);
+}
+
+[ngpComboboxOption][data-selected] {
+  background-color: var(--selected);
+  color: white;
+}
+
+div[ngpComboboxDropdown] .br-item {
+  --item-padding: 0.75rem 1rem;
+  padding: var(--item-padding);
+}
+
+.empty-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  color: var(--ngp-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+@keyframes combobox-show {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes combobox-hide {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.9);
+  }
+}

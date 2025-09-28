@@ -36,6 +36,22 @@ export class App {
 
   framework = signal<string | null>(null);
 
+  readonly options: string[] = [
+    'Marty McFly',
+    'Doc Brown',
+    'Biff Tannen',
+    'George McFly',
+    'Jennifer Parker',
+    'Emmett Brown',
+    'Einstein',
+    'Clara Clayton',
+    'Needles',
+    'Goldie Wilson',
+    'Marvin Berry',
+    'Lorraine Baines',
+    'Strickland',
+  ];
+
   frameworks = signal([
     // Frameworks Principais
     { value: 'ng', label: 'Angular' },
