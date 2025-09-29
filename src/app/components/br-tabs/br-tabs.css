@@ -1,0 +1,23 @@
+/* :host {
+  display: contents;
+}
+
+[ngpTabButton][data-focus-visible] {
+  outline: 2px solid var(--ngp-focus-ring);
+  outline-offset: 2px;
+}
+
+[ngpTabButton][data-active] {
+  border-color: var(--bg-primary);
+  color: var(--ngp-text-primary);
+}
+
+[ngpTabButton][data-disabled] {
+  color: var(--ngp-text-disabled);
+  cursor: not-allowed;
+}
+
+[ngpTabPanel]:not([data-active]) {
+  display: none;
+}
+ */

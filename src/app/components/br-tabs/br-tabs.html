@@ -1,0 +1,48 @@
+<div ngpTabset>
+  <nav ngpTabList class="flex">
+    <button
+      ngpTabButton
+      ngpTabButtonValue="tab1"
+      class="py-4 px-6 hover:bg-hover data-[active]:border-b-4 border-primary focus-visible:ring data-[active]:text-primary text-xl font-medium"
+    >
+      Tab 1
+    </button>
+    <button
+      ngpTabButton
+      ngpTabButtonValue="tab2"
+      class="py-4 px-6 hover:bg-hover data-[active]:border-b-4 border-primary focus-visible:ring data-[active]:text-primary text-xl font-medium"
+    >
+      Tab 2
+    </button>
+    <button
+      ngpTabButton
+      ngpTabButtonValue="tab3"
+      class="py-4 px-6 hover:bg-hover data-[active]:border-b-4 border-primary focus-visible:ring data-[active]:text-primary text-xl font-medium"
+    >
+      Tab 3
+    </button>
+  </nav>
+  <div class="tab-content">
+    <div
+      ngpTabPanel
+      ngpTabPanelValue="tab1"
+      class="tab-panel hidden data-[active]:block"
+    >
+      Tab 1 content
+    </div>
+    <div
+      ngpTabPanel
+      ngpTabPanelValue="tab2"
+      class="tab-panel hidden data-[active]:block"
+    >
+      Tab 2 content
+    </div>
+    <div
+      ngpTabPanel
+      ngpTabPanelValue="tab3"
+      class="tab-panel hidden data-[active]:block"
+    >
+      Tab 3 content
+    </div>
+  </div>
+</div>

@@ -25,13 +25,15 @@
     </button>
   </div>
 
-  <div *ngpComboboxPortal ngpComboboxDropdown class="br-list d-block">
-    @for (option of filteredOptions(); track option) {
-    <div [ngpComboboxOptionValue]="option" ngpComboboxOption class="br-item">
-      {{ option }}
+  <div *ngpComboboxPortal ngpComboboxDropdown class="br-select">
+    <div class="br-list d-block">
+      @for (option of filteredOptions(); track option) {
+      <div [ngpComboboxOptionValue]="option" ngpComboboxOption>
+        {{ option }}
+      </div>
+      } @empty {
+      <div class="empty-message">No options found</div>
+      }
     </div>
-    } @empty {
-    <div class="empty-message">No options found</div>
-    }
   </div>
 </div>

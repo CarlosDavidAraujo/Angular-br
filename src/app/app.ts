@@ -12,6 +12,7 @@ import { FormLabel } from './components/form/form-label';
 import { FormItem } from './components/form/form-item';
 import { FormControlDirective } from './components/form/br-form.directive';
 import { BrSelectComponent } from './components/br-select/br-select.component';
+import { BrTabs } from './components/br-tabs/br-tabs';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ import { BrSelectComponent } from './components/br-select/br-select.component';
     ReactiveFormsModule,
     FormControlDirective,
     BrSelectComponent,
+    BrTabs,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
