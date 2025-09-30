@@ -1,21 +1,14 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { BrTabs } from './br-tabs';
+import { Component } from '@angular/core';
+import { NgpTabList } from 'ng-primitives/tabs';
 
 @Component({
   selector: 'br-tabs-list',
-  template: `
-    <nav class="tab-nav" role="tablist" aria-label="Navegação por abas">
-      <ul>
-        <ng-content></ng-content>
-      </ul>
-    </nav>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '(keydown.arrowRight)': 'tabs.nextTab()',
-    '(keydown.arrowLeft)': 'tabs.previousTab()',
-  },
+  standalone: true,
+  imports: [NgpTabList],
+  template: `<nav ngpTabList class="tab-nav">
+    <ul>
+      <ng-content></ng-content>
+    </ul>
+  </nav>`,
 })
-export class BrTabsList {
-  protected tabs = inject(BrTabs);
-}
+export class BrTabsList {}

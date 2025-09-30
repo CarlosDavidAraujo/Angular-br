@@ -6,35 +6,42 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Form } from './components/form/form';
-import { FormLabel } from './components/form/form-label';
-
-import { FormItem } from './components/form/form-item';
-import { FormControlDirective } from './components/form/br-form.directive';
 import { BrSelectComponent } from './components/br-select/br-select.component';
-import { NgpDialogTrigger } from 'ng-primitives/dialog';
-import { NgpButton } from 'ng-primitives/button';
-import { BrModal } from './components/br-modal/br-modal.component';
-import { BrModalHeader } from './components/br-modal/br-modal-header.component';
-import { BrModalBody } from './components/br-modal/br-modal-body.component';
-import { BrModalFooter } from './components/br-modal/br-modal-footer.component';
+import {
+  BrTabs,
+  BrTabsList,
+  BrTabsItem,
+  BrTabsPanel,
+} from './components/br-tabs';
+import { BrButtonComponent } from './components/br-button/br-button.component';
+import { BrCheckboxComponent } from './components/br-checkbox/br-checkbox.component';
+import { BrFormDescriptionComponent } from './components/br-form/br-form-description.component';
+import { BrFormErrorComponent } from './components/br-form/br-form-error.component';
+import { BrFormFieldComponent } from './components/br-form/br-form-field.component';
+import { BrFormLabelComponent } from './components/br-form/br-form-label.component';
+import { BrInputComponent } from './components/br-input/br-input.component';
+import { BrSelectOptionComponent } from './components/br-select/br-select-option.component';
+import { BrDatepickerComponent } from './components/br-datepicker/br-datepicker';
 
 @Component({
   selector: 'app-root',
   imports: [
     ReactiveFormsModule,
-    Form,
-    FormLabel,
-    FormItem,
     ReactiveFormsModule,
-    FormControlDirective,
     BrSelectComponent,
-    NgpButton,
-    NgpDialogTrigger,
-    BrModal,
-    BrModalHeader,
-    BrModalBody,
-    BrModalFooter,
+    BrTabs,
+    BrTabsList,
+    BrTabsItem,
+    BrTabsPanel,
+    BrButtonComponent,
+    BrCheckboxComponent,
+    BrFormDescriptionComponent,
+    BrFormErrorComponent,
+    BrFormFieldComponent,
+    BrFormLabelComponent,
+    BrInputComponent,
+    BrSelectOptionComponent,
+    BrDatepickerComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
@@ -120,6 +127,7 @@ export class App {
       Validators.maxLength(100),
     ]),
     frameworkId: new FormControl<string | null>(null, Validators.required),
+    dataNascimento: new FormControl<Date | null>(null, Validators.required),
   });
 
   onSubmit() {

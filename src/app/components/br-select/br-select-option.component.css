@@ -1,0 +1,22 @@
+[ngpComboboxOption][data-hover] {
+  background-image: linear-gradient(
+    rgba(var(--interactive-rgb), var(--hover)),
+    rgba(var(--interactive-rgb), var(--hover))
+  );
+  outline: none;
+}
+
+[ngpComboboxOption][data-active]:not([data-hover]) {
+  outline-color: var(--focus);
+  outline-offset: var(--focus-offset, -1px);
+  outline-style: var(--focus-style, solid);
+  outline-width: var(--focus-width, 2px);
+}
+
+[ngpComboboxOption][data-selected] {
+  background-color: var(--surface-background-active, #e6f7ff);
+  --color: var(--color-dark);
+  --text-color: var(--color-dark);
+  --interactive: var(--interactive-dark);
+  --hover: var(--hover-dark);
+}

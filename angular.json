@@ -16,6 +16,9 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              "src/assets",
+              "src/web.config",
+              "src/env.js",
               {
                 "glob": "**/*",
                 "input": "public"

@@ -1,90 +1,22 @@
-<div class="min-h-screen ...">
-  <div class="w-full max-w-md ...">
-    <h2 class="...">Acessar Plataforma</h2>
+<form [formGroup]="form">
+  <div class="row">
+    <br-form-field class="col-2">
+      <br-form-label>Email</br-form-label>
+      <input brInput brFormControl formControlName="email" type="text" />
+      <br-form-description>
+        Seu nome de usuário deve ser único.
+      </br-form-description>
+      <br-form-error validator="required"
+        >Este campo é obrigatório.
+      </br-form-error>
+      <br-form-error validator="email">Digite um email válido</br-form-error>
+    </br-form-field>
   </div>
 
-  <br-form [formGroup]="form">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <br-form-item name="email">
-        <div class="br-input">
-          <br-form-label>Email:</br-form-label>
-          <input
-            brFormControl
-            formControlName="email"
-            type="email"
-            autocomplete="off"
-          />
-        </div>
-      </br-form-item>
-      <br-form-item name="password">
-        <div class="br-input">
-          <br-form-label>Senha:</br-form-label>
-          <input brFormControl formControlName="password" type="password" />
-        </div>
-      </br-form-item>
-      <br-form-item name="observacao">
-        <div class="br-textarea">
-          <br-form-label>Observacao</br-form-label>
-          <textarea brFormControl formControlName="observacao"></textarea>
-        </div>
-      </br-form-item>
-      <!-- 
-      <br-form-item name="frameworkId">
-        <br-form-label>Framework Favorito:</br-form-label>
-        <br-select
-          id="framework-select"
-          placeholder="Selecione um framework..."
-          formControlName="frameworkId"
-          brFormControl
-        >
-          @for (fw of frameworks(); track fw.id) {
-          <br-select-item [value]="fw.id">
-            {{ fw.name }}
-          </br-select-item>
-          }
-        </br-select>
-      </br-form-item>
-
-      <br-select [(value)]="framework" placeholder="Selecione um framework...">
-        @for (fw of frameworks(); track fw.id) {
-        <br-select-item [value]="fw.id">
-          {{ fw.name }}
-        </br-select-item>
-        }
-      </br-select> -->
-
-      <button type="submit" class="br-button primary">Entrar</button>
-    </form>
-  </br-form>
-
-  <br-select [options]="options"></br-select>
-
-  <button [ngpDialogTrigger]="dialog" ngpButton>Open Dialog</button>
-
-  <ng-template #dialog let-close="close">
-    <br-modal>
-      <br-modal-header> Título da modal</br-modal-header>
-      <br-modal-body>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-          commodi laboriosam vel sequi quam deleniti, laborum mollitia
-          blanditiis dolores officiis nulla quos dolorem repellat in nisi alias
-          nesciunt fugit. Similique!
-        </p></br-modal-body
-      >
-      <br-modal-footer>
-        <button
-          (click)="close()"
-          ngpButton
-          class="br-button secondary"
-          type="button"
-        >
-          Ação 1
-        </button>
-        <button (click)="close()" class="br-button primary ml-2" type="button">
-          Ação2
-        </button></br-modal-footer
-      >
-    </br-modal>
-  </ng-template>
-</div>
+  <br-datepicker
+    id="data-nascimento"
+    label="Data de Nascimento"
+    placeholder="dd/mm/aaaa"
+    formControlName="dataNascimento"
+  ></br-datepicker>
+</form>

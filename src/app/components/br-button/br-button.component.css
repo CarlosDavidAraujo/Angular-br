@@ -1,0 +1,68 @@
+:host {
+  @apply inline-flex items-center justify-center font-semibold whitespace-nowrap
+         px-3x rounded-full transition-colors
+         focus:outline-none disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+:host[data-focus-visible] {
+  @apply ring-2 ring-ring ring-offset-2;
+}
+
+/*
+ * Variantes de TAMANHO.
+ */
+:host[data-size="xsmall"] {
+  @apply h-6 text-sm;
+}
+:host[data-size="small"] {
+  @apply h-8 text-sm;
+}
+:host[data-size="medium"] {
+  @apply h-10 text-base;
+}
+:host[data-size="large"] {
+  @apply h-12 text-lg;
+}
+
+/*
+ * Variante de FORMA (Círculo).
+ */
+:host([data-circle]) {
+  @apply p-0 aspect-square rounded-full;
+}
+
+/*
+ * Variantes de COR.
+ */
+
+/* PRIMARY */
+:host([data-variant="primary"]) {
+  @apply bg-primary text-primary-foreground;
+}
+:host([data-variant="primary"][data-hover]) {
+  @apply bg-primary/90; /* Usamos opacidade para um efeito de hover simples e eficaz */
+}
+
+/* SECONDARY */
+:host([data-variant="secondary"]) {
+  @apply bg-secondary text-secondary-foreground border border-primary;
+}
+:host([data-variant="secondary"][data-hover]) {
+  @apply bg-black/5; /* Efeito de hover sutil para fundos claros */
+}
+
+/* DANGER */
+:host([data-variant="danger"]) {
+  @apply bg-danger text-danger-foreground;
+}
+:host([data-variant="danger"][data-hover]) {
+  @apply bg-danger/90;
+}
+
+/* SUCCESS */
+:host([data-variant="success"]) {
+  @apply bg-success text-success-foreground;
+}
+:host([data-variant="success"][data-hover]) {
+  @apply bg-success/90;
+}

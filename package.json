@@ -33,8 +33,12 @@
     "@govbr-ds/webcomponents-angular": "^2.0.0-next.43",
     "@internationalized/date": "^3.9.0",
     "@radix-ng/primitives": "^0.43.0",
+    "@tailwindcss/postcss": "^4.1.13",
+    "flatpickr": "^4.6.13",
     "ng-primitives": "^0.81.1",
+    "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
+    "tailwindcss": "^4.1.13",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

@@ -27,7 +27,7 @@ import { NgpButton } from 'ng-primitives/button';
   ],
   imports: [NgpAccordionContent, NgpAccordionTrigger, NgpButton],
   template: `
-    <div class="item" [attr.active]="open()">
+    <h3 class="item" [attr.active]="open()">
       <button
         #trigger
         class="header"
@@ -39,7 +39,7 @@ import { NgpButton } from 'ng-primitives/button';
         <span class="icon"><i class="fas fa-angle-up"></i></span>
         <span class="title"> {{ heading() }}</span>
       </button>
-    </div>
+    </h3>
 
     <div class="content overflow-hidden p-0" ngpAccordionContent>
       <div class="pl-8x pr-2x py-base">

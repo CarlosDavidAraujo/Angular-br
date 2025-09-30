@@ -1,5 +1,4 @@
 <div
-  class="br-select"
   [(ngpComboboxValue)]="value"
   [ngpComboboxDisabled]="disabled() || formDisabled()"
   (ngpComboboxOpenChange)="resetOnClose($event)"
@@ -25,13 +24,15 @@
     </button>
   </div>
 
-  <div *ngpComboboxPortal ngpComboboxDropdown class="br-list d-block">
-    @for (option of filteredOptions(); track option) {
-    <div [ngpComboboxOptionValue]="option" ngpComboboxOption class="br-item">
-      {{ option }}
+  <div *ngpComboboxPortal ngpComboboxDropdown class="br-select">
+    <div class="br-list">
+      @for (option of filteredOptions(); track option) {
+      <div [ngpComboboxOptionValue]="option" ngpComboboxOption class="br-item">
+        {{ option }}
+      </div>
+      } @empty {
+      <div class="br-item">Nenhuma opção encontrada</div>
+      }
     </div>
-    } @empty {
-    <div class="empty-message">No options found</div>
-    }
   </div>
 </div>

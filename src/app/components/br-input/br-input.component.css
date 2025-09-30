@@ -1,0 +1,89 @@
+/*
+ * ESTILOS BASE
+ * Propriedades copiadas de `.br-input` e `.br-input input`
+ */
+:host {
+  /* Variáveis de controle de tamanho, copiadas do .br-input */
+  --input-small: 32px;
+  --input-medium: 40px;
+  --input-large: 48px;
+  --input-size: var(--input-medium); /* Tamanho padrão */
+
+  /* Estilos visuais, copiados do .br-input input */
+  background-color: var(--background-light);
+  border-color: var(--border-color-alternative);
+  border-radius: var(--surface-rounder-sm);
+  border-style: var(--border-style);
+  border-width: var(--border-width);
+  color: var(--color-light);
+  display: block;
+  font-size: var(--font-size-scale-up-01);
+  font-weight: var(--font-weight-medium);
+  height: var(--input-size);
+  padding: 0 var(--spacing-scale-2x);
+  width: 100%;
+  transition: background-image 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+/*
+ * ESTADOS (Hover, Focus, Disabled)
+ */
+:host(:not(:disabled):hover) {
+  background-image: linear-gradient(
+    rgba(var(--color-rgb), var(--hover)),
+    rgba(var(--color-rgb), var(--hover))
+  );
+}
+
+:host(:focus-visible) {
+  border-color: var(--focus) !important;
+  box-shadow: 0 0 0 var(--surface-width-md) var(--focus);
+  outline: none;
+}
+
+:host(:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-image: none;
+}
+
+/*
+ * VARIANTES DE TAMANHO
+ * Usamos os data-attributes que o componente aplica
+ */
+:host([data-size="small"]) {
+  --input-size: var(--input-small);
+}
+:host([data-size="large"]) {
+  --input-size: var(--input-large);
+}
+
+/*
+ * VARIANTES DE STATUS (Validação)
+ */
+:host([data-status="success"]) {
+  border-color: var(--success);
+  border-width: 2px;
+}
+:host([data-status="danger"]) {
+  border-color: var(--danger);
+  border-width: 2px;
+}
+:host([data-status="warning"]) {
+  border-color: var(--warning);
+  border-width: 2px;
+}
+:host([data-status="info"]) {
+  border-color: var(--info);
+  border-width: 2px;
+}
+
+/*
+ * ============================================
+ * ESTADO DE VALIDAÇÃO AUTOMÁTICO (do FormField)
+ * ============================================
+ */
+:host[data-invalid][data-dirty] {
+  border-color: var(--danger);
+  border-width: 2px;
+}

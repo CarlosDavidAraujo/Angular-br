@@ -1,109 +1,44 @@
-.br-select {
-  --select-divider: 1px solid var(--color-secondary-04);
-}
-.br-select .br-item.highlighted[selected] {
-  background-color: var(--selected);
-}
+/*
+ * =======================================================
+ * CORREÇÃO PARA O PORTAL DO COMBOBOX/SELECT (GOV.BR)
+ * =======================================================
+ */
 
-[ngpComboboxDropdown].br-list {
-  background: var(--bg-color);
-  box-shadow: var(--select-shadow);
-  margin-top: -2px;
-  max-height: 404px;
-  overflow: auto;
-  position: absolute;
-  resize: none;
-  width: var(--ngp-combobox-width);
-  z-index: 1;
+/* * 1. Força o container do portal a não ter uma posição relativa que 
+ * conflite com o posicionamento absoluto do ng-primitives.
+ */
+div[ngpComboboxDropdown].br-select {
+  position: static !important;
 }
 
-/* [ngpComboboxDropdown] .br-item {
-  --color: var(--color-light);
-  --color-rgb: var(--color-light-rgb);
-  --text-color: var(--color-light);
-  --interactive: var(--interactive-light);
-  --interactive-rgb: var(--interactive-light-rgb);
-  --visited: var(--visited-light);
-  --hover: var(--hover-light);
-  --pressed: var(--pressed-light);
-  --focus-color: var(--focus-color-light);
-  --focus: var(--focus-color-light);
-  --item-padding-y: var(--spacing-scale-2x);
-} */
-
-[ngpCombobox][data-focus] {
-  outline: 2px solid var(--ngp-focus-ring);
-  outline-offset: 2px;
-}
-
-[ngpComboboxDropdown][data-enter] {
-  animation: combobox-show 0.1s ease-out;
-}
-
-[ngpComboboxDropdown][data-exit] {
-  animation: combobox-hide 0.1s ease-out;
+/* * 2. Força o .br-list dentro do portal a não ter uma posição absoluta,
+ * deixando-o fluir normalmente dentro do seu container já posicionado.
+ * Também remove a margem negativa.
+ */
+div[ngpComboboxDropdown] .br-list {
+  position: static !important;
+  margin-top: 0 !important;
 }
 
 [ngpComboboxOption][data-hover] {
-  --item-padding: 0.75rem 1rem;
-  padding: var(--item-padding);
+  background-image: linear-gradient(
+    rgba(var(--interactive-rgb), var(--hover)),
+    rgba(var(--interactive-rgb), var(--hover))
+  );
+  outline: none;
 }
 
-[ngpComboboxOption][data-hover] {
-  background-color: var(--hover-light);
-}
-
-[ngpComboboxOption][data-hover] {
-  background-color: var(--hover-light);
-}
-
-[ngpComboboxOption][data-press] {
-  background-color: var(--pressed-light);
-}
-
-[ngpComboboxOption][data-active] {
-  outline: var(--focus-width, 2px) var(--focus-style, solid)
-    var(--focus-color, #007bff);
-  outline-offset: var(--focus-offset, 2px);
+[ngpComboboxOption][data-active]:not([data-hover]) {
+  outline-color: var(--focus);
+  outline-offset: var(--focus-offset, -1px);
+  outline-style: var(--focus-style, solid);
+  outline-width: var(--focus-width, 2px);
 }
 
 [ngpComboboxOption][data-selected] {
-  background-color: var(--selected);
-  color: white;
-}
-
-div[ngpComboboxDropdown] .br-item {
-}
-
-.empty-message {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem;
-  color: var(--ngp-text-secondary);
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-}
-
-@keyframes combobox-show {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px) scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes combobox-hide {
-  0% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-10px) scale(0.9);
-  }
+  background-color: var(--surface-background-active, #e6f7ff);
+  --color: var(--color-dark);
+  --text-color: var(--color-dark);
+  --interactive: var(--interactive-dark);
+  --hover: var(--hover-dark);
 }
