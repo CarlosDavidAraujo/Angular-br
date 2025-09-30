@@ -12,6 +12,12 @@ import { FormLabel } from './components/form/form-label';
 import { FormItem } from './components/form/form-item';
 import { FormControlDirective } from './components/form/br-form.directive';
 import { BrSelectComponent } from './components/br-select/br-select.component';
+import { NgpDialogTrigger } from 'ng-primitives/dialog';
+import { NgpButton } from 'ng-primitives/button';
+import { BrModal } from './components/br-modal/br-modal.component';
+import { BrModalHeader } from './components/br-modal/br-modal-header.component';
+import { BrModalBody } from './components/br-modal/br-modal-body.component';
+import { BrModalFooter } from './components/br-modal/br-modal-footer.component';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +29,12 @@ import { BrSelectComponent } from './components/br-select/br-select.component';
     ReactiveFormsModule,
     FormControlDirective,
     BrSelectComponent,
+    NgpButton,
+    NgpDialogTrigger,
+    BrModal,
+    BrModalHeader,
+    BrModalBody,
+    BrModalFooter,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

@@ -5,31 +5,31 @@
   background-color: var(--selected);
 }
 
-[ngpComboboxDropdown] .br-list {
-  display: block;
-  position: static;
-  margin-top: 0;
-  border-radius: 4px;
-  border: 1px solid #dfe3e6;
+[ngpComboboxDropdown].br-list {
+  background: var(--bg-color);
+  box-shadow: var(--select-shadow);
+  margin-top: -2px;
+  max-height: 404px;
+  overflow: auto;
+  position: absolute;
+  resize: none;
   width: var(--ngp-combobox-width);
+  z-index: 1;
 }
 
-div[ngpComboboxDropdown] .br-item {
-  --item-padding: 0.75rem 1rem;
-  padding: var(--item-padding);
-}
-
-div[ngpComboboxDropdown] .br-item[data-hover] {
-  background-image: linear-gradient(
-    rgba(200, 200, 200, 0.2),
-    rgba(200, 200, 200, 0.2)
-  );
-}
-
-[ngpComboboxDropdown] .br-item[data-active] {
-  background-color: #e6f7ff;
-  font-weight: 600;
-}
+/* [ngpComboboxDropdown] .br-item {
+  --color: var(--color-light);
+  --color-rgb: var(--color-light-rgb);
+  --text-color: var(--color-light);
+  --interactive: var(--interactive-light);
+  --interactive-rgb: var(--interactive-light-rgb);
+  --visited: var(--visited-light);
+  --hover: var(--hover-light);
+  --pressed: var(--pressed-light);
+  --focus-color: var(--focus-color-light);
+  --focus: var(--focus-color-light);
+  --item-padding-y: var(--spacing-scale-2x);
+} */
 
 [ngpCombobox][data-focus] {
   outline: 2px solid var(--ngp-focus-ring);
@@ -45,11 +45,20 @@ div[ngpComboboxDropdown] .br-item[data-hover] {
 }
 
 [ngpComboboxOption][data-hover] {
-  background-color: var(--hover);
+  --item-padding: 0.75rem 1rem;
+  padding: var(--item-padding);
+}
+
+[ngpComboboxOption][data-hover] {
+  background-color: var(--hover-light);
+}
+
+[ngpComboboxOption][data-hover] {
+  background-color: var(--hover-light);
 }
 
 [ngpComboboxOption][data-press] {
-  background-color: var(--ngp-background-active);
+  background-color: var(--pressed-light);
 }
 
 [ngpComboboxOption][data-active] {
@@ -64,8 +73,6 @@ div[ngpComboboxDropdown] .br-item[data-hover] {
 }
 
 div[ngpComboboxDropdown] .br-item {
-  --item-padding: 0.75rem 1rem;
-  padding: var(--item-padding);
 }
 
 .empty-message {

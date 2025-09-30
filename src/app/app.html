@@ -59,16 +59,32 @@
 
   <br-select [options]="options"></br-select>
 
-  <!--   <br-accordion-root>
-    <br-accordion-item value="1" title="Is it unstyled?">
-      Yes. It's unstyled by default, giving you freedom over the look and
-      feel.</br-accordion-item
-    >
+  <button [ngpDialogTrigger]="dialog" ngpButton>Open Dialog</button>
 
-    <br-accordion-item value="2" title="Can it be animated?">
-      Yes! You can animate the Accordion with CSS or
-      JavaScript.</br-accordion-item
-    >
-  </br-accordion-root>
- -->
+  <ng-template #dialog let-close="close">
+    <br-modal>
+      <br-modal-header> Título da modal</br-modal-header>
+      <br-modal-body>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+          commodi laboriosam vel sequi quam deleniti, laborum mollitia
+          blanditiis dolores officiis nulla quos dolorem repellat in nisi alias
+          nesciunt fugit. Similique!
+        </p></br-modal-body
+      >
+      <br-modal-footer>
+        <button
+          (click)="close()"
+          ngpButton
+          class="br-button secondary"
+          type="button"
+        >
+          Ação 1
+        </button>
+        <button (click)="close()" class="br-button primary ml-2" type="button">
+          Ação2
+        </button></br-modal-footer
+      >
+    </br-modal>
+  </ng-template>
 </div>
